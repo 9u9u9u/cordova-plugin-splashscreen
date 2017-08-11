@@ -313,18 +313,17 @@ public class SplashScreen extends CordovaPlugin {
                 splashDialog = new Dialog(context, android.R.style.Theme_Translucent_NoTitleBar);
                 // check to see if the splash screen should be full screen
                    
-                /*
                 if ((cordova.getActivity().getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN)
                         == WindowManager.LayoutParams.FLAG_FULLSCREEN) {
                     splashDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 }
-                */                   
                    
-                if ((cordova.getActivity().getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN)
-                        == WindowManager.LayoutParams.FLAG_FULLSCREEN || preferences.getBoolean("SplashFullscreen", false)) {
-                    splashDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                if (preferences.getBoolean("SplashScreenFullscreen", true)) {
+                    splashDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                            WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                    splashDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
+                            WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 }
                    
                 splashDialog.setContentView(splashImageView);
